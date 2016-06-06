@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 
 
 @Configuration
-@ComponentScan
+@ComponentScan(basePackages={"no.group"})
 @EnableWebSecurity
 public class RootConfig {
 
