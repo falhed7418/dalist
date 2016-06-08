@@ -6,6 +6,12 @@
 </head>
 <body>
     {{ request.contextPath }}
-    {{ request.getAttribute("_csrf").getToken() }}
+
+    <form action="{{ request.contextPath}}/logout" method="POST">
+        <input type="hidden" 
+        name="{{ request.getAttribute('_csrf').getParameterName() }}"
+        value="{{ request.getAttribute('_csrf').getToken() }}">
+        <input type="submit" name="logoutbutton" value="logout"/>
+    </form>
 </body>
 </html>
