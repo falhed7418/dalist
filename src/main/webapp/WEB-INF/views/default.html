@@ -5,13 +5,25 @@
     <title></title>
 </head>
 <body>
-    {{ request.contextPath }}
+    {% set cpath = request.contextPath %}
+    {% set csrf = request.getAttribute("_csrf") %}
 
-    <form action="{{ request.contextPath}}/logout" method="POST">
+    <form action="{{ cpath }}/logout" method="POST">
         <input type="hidden" 
-        name="{{ request.getAttribute('_csrf').getParameterName() }}"
-        value="{{ request.getAttribute('_csrf').getToken() }}">
+        name="{{ csrf.getParameterName() }}"
+        value="{{ csrf.getToken() }}">
         <input type="submit" name="logoutbutton" value="logout"/>
     </form>
+    {% secauthorize "hasRole('ROLE_ADMIN')" %}
+    <p>
+        This is for Admin
+    </p>
+    {% else %}
+    <p>
+        This is for Not admins
+    </p>
+    {% endsecauthorize %}
 </body>
 </html>
+
+
