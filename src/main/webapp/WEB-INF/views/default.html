@@ -7,12 +7,14 @@
 <body>
     {% set cpath = request.contextPath %}
     {% set csrf = request.getAttribute("_csrf") %}
-
     <form action="{{ cpath }}/logout" method="POST">
         <input type="hidden" 
         name="{{ csrf.getParameterName() }}"
         value="{{ csrf.getToken() }}">
         <input type="submit" name="logoutbutton" value="logout"/>
+    </form>
+    <form action="{{ cpath }}/mypost">
+        <input type="hidden" name="hiddeninput" value="hiddenvalue">
     </form>
     {% secauthorize "hasRole('ROLE_ADMIN')" %}
     <p>

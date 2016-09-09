@@ -12,20 +12,17 @@ import com.mitchellbosecke.pebble.tokenParser.AbstractTokenParser;
 import com.mitchellbosecke.pebble.utils.Pair;
 import com.mitchellbosecke.pebble.springsecurity.node.SecAuthorizeNode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletContext;
 
 public class SecTokenParser extends AbstractTokenParser {
-	
-	private javax.servlet.ServletContext servletContext;
+
+    private javax.servlet.ServletContext servletContext;
 
     public SecTokenParser(ServletContext servletContext) {
-		this.servletContext = servletContext;
-	}
+        this.servletContext = servletContext;
+    }
 
-	@Override
+    @Override
     public RenderableNode parse(Token token, Parser parser) throws ParserException {
         TokenStream stream = parser.getStream();
         int lineNumber = token.getLineNumber();
@@ -50,7 +47,7 @@ public class SecTokenParser extends AbstractTokenParser {
         stream.expect(Token.Type.EXECUTE_END);
         SecAuthorizeNode secAuthorizeNode = new SecAuthorizeNode(lineNumber, pair, elseBody);
         secAuthorizeNode.setServletContext(servletContext);
-		return secAuthorizeNode;
+        return secAuthorizeNode;
     }
 
     private StoppingCondition decideIfFork = new StoppingCondition() {
@@ -66,7 +63,7 @@ public class SecTokenParser extends AbstractTokenParser {
             return token.test(Token.Type.NAME, "endsecauthorize");
         }
     };
-    
+
     @Override
     public String getTag() {
         return "secauthorize";
