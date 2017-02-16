@@ -1,0 +1,10 @@
+{% extends "common/base" %}
+{% block title %}Form Page{% endblock %}
+{% block bodyblock %}
+This is where the form goes
+
+<form action="{{ cpath }}/formpost" method="post">
+    <input type="text" name="name" id="name"/>
+    <input type="hidden" name="{{ csrf.getParameterName() }}" value="{{ csrf.getToken() }}">
+</form>
+{% endblock %}

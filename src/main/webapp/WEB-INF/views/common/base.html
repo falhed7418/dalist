@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Dalist!{% endblock %}</title>
+</head>
+<body>
+    {% set cpath = request.contextPath %}
+    {% set csrf = request.getAttribute("_csrf") %}
+    {% block bodyblock  %}{% endblock %}
+</body>
+</html>
+
+
+
